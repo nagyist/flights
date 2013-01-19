@@ -1,0 +1,527 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E21DC41816AAE9A000299DCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DC41716AAE9A000299DCD /* UIKit.framework */; };
+		E21DC41A16AAE9A000299DCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DC41916AAE9A000299DCD /* Foundation.framework */; };
+		E21DC41C16AAE9A000299DCD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DC41B16AAE9A000299DCD /* CoreGraphics.framework */; };
+		E21DC42216AAE9A000299DCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E21DC42016AAE9A000299DCD /* InfoPlist.strings */; };
+		E21DC42416AAE9A000299DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E21DC42316AAE9A000299DCD /* main.m */; };
+		E21DC42816AAE9A000299DCD /* MDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E21DC42716AAE9A000299DCD /* MDAppDelegate.m */; };
+		E21DC42A16AAE9A000299DCD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E21DC42916AAE9A000299DCD /* Default.png */; };
+		E21DC42C16AAE9A000299DCD /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21DC42B16AAE9A000299DCD /* Default@2x.png */; };
+		E21DC42E16AAE9A000299DCD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21DC42D16AAE9A000299DCD /* Default-568h@2x.png */; };
+		E21DC43116AAE9A000299DCD /* MDHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21DC43016AAE9A000299DCD /* MDHomeViewController.m */; };
+		E21DC43316AAE9A000299DCD /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = E21DC43216AAE9A000299DCD /* first.png */; };
+		E21DC43516AAE9A000299DCD /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21DC43416AAE9A000299DCD /* first@2x.png */; };
+		E21DC43816AAE9A000299DCD /* MDAlertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21DC43716AAE9A000299DCD /* MDAlertsViewController.m */; };
+		E21DC43A16AAE9A000299DCD /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = E21DC43916AAE9A000299DCD /* second.png */; };
+		E21DC43C16AAE9A000299DCD /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E21DC43B16AAE9A000299DCD /* second@2x.png */; };
+		E21DC43F16AAE9A000299DCD /* MDHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21DC43D16AAE9A000299DCD /* MDHomeViewController.xib */; };
+		E21DC44216AAE9A000299DCD /* MDAlertsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21DC44016AAE9A000299DCD /* MDAlertsViewController.xib */; };
+		E21DC44A16AAE9A000299DCD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DC44916AAE9A000299DCD /* SenTestingKit.framework */; };
+		E21DC44B16AAE9A000299DCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DC41716AAE9A000299DCD /* UIKit.framework */; };
+		E21DC44C16AAE9A000299DCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21DC41916AAE9A000299DCD /* Foundation.framework */; };
+		E21DC45416AAE9A000299DCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E21DC45216AAE9A000299DCD /* InfoPlist.strings */; };
+		E21DC45716AAE9A000299DCD /* FlightsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E21DC45616AAE9A000299DCD /* FlightsTests.m */; };
+		E21DC46B16AAECF200299DCD /* MDSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21DC46916AAECF200299DCD /* MDSearchViewController.m */; };
+		E21DC46C16AAECF200299DCD /* MDSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21DC46A16AAECF200299DCD /* MDSearchViewController.xib */; };
+		E21DC47016AAED0600299DCD /* MDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21DC46E16AAED0600299DCD /* MDSettingsViewController.m */; };
+		E21DC47116AAED0600299DCD /* MDSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21DC46F16AAED0600299DCD /* MDSettingsViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E21DC44D16AAE9A000299DCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E21DC40A16AAE9A000299DCD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E21DC41216AAE9A000299DCD;
+			remoteInfo = Flights;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E21DC41316AAE9A000299DCD /* Flights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flights.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E21DC41716AAE9A000299DCD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E21DC41916AAE9A000299DCD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E21DC41B16AAE9A000299DCD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E21DC41F16AAE9A000299DCD /* Flights-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Flights-Info.plist"; sourceTree = "<group>"; };
+		E21DC42116AAE9A000299DCD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E21DC42316AAE9A000299DCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E21DC42516AAE9A000299DCD /* Flights-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flights-Prefix.pch"; sourceTree = "<group>"; };
+		E21DC42616AAE9A000299DCD /* MDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDAppDelegate.h; sourceTree = "<group>"; };
+		E21DC42716AAE9A000299DCD /* MDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDAppDelegate.m; sourceTree = "<group>"; };
+		E21DC42916AAE9A000299DCD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E21DC42B16AAE9A000299DCD /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E21DC42D16AAE9A000299DCD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E21DC42F16AAE9A000299DCD /* MDHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDHomeViewController.h; sourceTree = "<group>"; };
+		E21DC43016AAE9A000299DCD /* MDHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDHomeViewController.m; sourceTree = "<group>"; };
+		E21DC43216AAE9A000299DCD /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		E21DC43416AAE9A000299DCD /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		E21DC43616AAE9A000299DCD /* MDAlertsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDAlertsViewController.h; sourceTree = "<group>"; };
+		E21DC43716AAE9A000299DCD /* MDAlertsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDAlertsViewController.m; sourceTree = "<group>"; };
+		E21DC43916AAE9A000299DCD /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		E21DC43B16AAE9A000299DCD /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		E21DC43E16AAE9A000299DCD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MDHomeViewController.xib; sourceTree = "<group>"; };
+		E21DC44116AAE9A000299DCD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MDAlertsViewController.xib; sourceTree = "<group>"; };
+		E21DC44816AAE9A000299DCD /* FlightsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlightsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E21DC44916AAE9A000299DCD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E21DC45116AAE9A000299DCD /* FlightsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FlightsTests-Info.plist"; sourceTree = "<group>"; };
+		E21DC45316AAE9A000299DCD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E21DC45516AAE9A000299DCD /* FlightsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlightsTests.h; sourceTree = "<group>"; };
+		E21DC45616AAE9A000299DCD /* FlightsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlightsTests.m; sourceTree = "<group>"; };
+		E21DC46816AAECF200299DCD /* MDSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSearchViewController.h; sourceTree = "<group>"; };
+		E21DC46916AAECF200299DCD /* MDSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSearchViewController.m; sourceTree = "<group>"; };
+		E21DC46A16AAECF200299DCD /* MDSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDSearchViewController.xib; sourceTree = "<group>"; };
+		E21DC46D16AAED0600299DCD /* MDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSettingsViewController.h; sourceTree = "<group>"; };
+		E21DC46E16AAED0600299DCD /* MDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSettingsViewController.m; sourceTree = "<group>"; };
+		E21DC46F16AAED0600299DCD /* MDSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDSettingsViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E21DC41016AAE9A000299DCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E21DC41816AAE9A000299DCD /* UIKit.framework in Frameworks */,
+				E21DC41A16AAE9A000299DCD /* Foundation.framework in Frameworks */,
+				E21DC41C16AAE9A000299DCD /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E21DC44416AAE9A000299DCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E21DC44A16AAE9A000299DCD /* SenTestingKit.framework in Frameworks */,
+				E21DC44B16AAE9A000299DCD /* UIKit.framework in Frameworks */,
+				E21DC44C16AAE9A000299DCD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E21DC40816AAE9A000299DCD = {
+			isa = PBXGroup;
+			children = (
+				E21DC41D16AAE9A000299DCD /* Flights */,
+				E21DC44F16AAE9A000299DCD /* FlightsTests */,
+				E21DC41616AAE9A000299DCD /* Frameworks */,
+				E21DC41416AAE9A000299DCD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E21DC41416AAE9A000299DCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E21DC41316AAE9A000299DCD /* Flights.app */,
+				E21DC44816AAE9A000299DCD /* FlightsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E21DC41616AAE9A000299DCD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E21DC41716AAE9A000299DCD /* UIKit.framework */,
+				E21DC41916AAE9A000299DCD /* Foundation.framework */,
+				E21DC41B16AAE9A000299DCD /* CoreGraphics.framework */,
+				E21DC44916AAE9A000299DCD /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E21DC41D16AAE9A000299DCD /* Flights */ = {
+			isa = PBXGroup;
+			children = (
+				E21DC42616AAE9A000299DCD /* MDAppDelegate.h */,
+				E21DC42716AAE9A000299DCD /* MDAppDelegate.m */,
+				E21DC42F16AAE9A000299DCD /* MDHomeViewController.h */,
+				E21DC43D16AAE9A000299DCD /* MDHomeViewController.xib */,
+				E21DC43016AAE9A000299DCD /* MDHomeViewController.m */,
+				E21DC46816AAECF200299DCD /* MDSearchViewController.h */,
+				E21DC46A16AAECF200299DCD /* MDSearchViewController.xib */,
+				E21DC46916AAECF200299DCD /* MDSearchViewController.m */,
+				E21DC46D16AAED0600299DCD /* MDSettingsViewController.h */,
+				E21DC46F16AAED0600299DCD /* MDSettingsViewController.xib */,
+				E21DC46E16AAED0600299DCD /* MDSettingsViewController.m */,
+				E21DC43616AAE9A000299DCD /* MDAlertsViewController.h */,
+				E21DC44016AAE9A000299DCD /* MDAlertsViewController.xib */,
+				E21DC43716AAE9A000299DCD /* MDAlertsViewController.m */,
+				E21DC46416AAEC2100299DCD /* Images */,
+				E21DC41E16AAE9A000299DCD /* Supporting Files */,
+			);
+			path = Flights;
+			sourceTree = "<group>";
+		};
+		E21DC41E16AAE9A000299DCD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E21DC41F16AAE9A000299DCD /* Flights-Info.plist */,
+				E21DC42016AAE9A000299DCD /* InfoPlist.strings */,
+				E21DC42316AAE9A000299DCD /* main.m */,
+				E21DC42516AAE9A000299DCD /* Flights-Prefix.pch */,
+				E21DC42916AAE9A000299DCD /* Default.png */,
+				E21DC42B16AAE9A000299DCD /* Default@2x.png */,
+				E21DC42D16AAE9A000299DCD /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E21DC44F16AAE9A000299DCD /* FlightsTests */ = {
+			isa = PBXGroup;
+			children = (
+				E21DC45516AAE9A000299DCD /* FlightsTests.h */,
+				E21DC45616AAE9A000299DCD /* FlightsTests.m */,
+				E21DC45016AAE9A000299DCD /* Supporting Files */,
+			);
+			path = FlightsTests;
+			sourceTree = "<group>";
+		};
+		E21DC45016AAE9A000299DCD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E21DC45116AAE9A000299DCD /* FlightsTests-Info.plist */,
+				E21DC45216AAE9A000299DCD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E21DC46416AAEC2100299DCD /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E21DC43216AAE9A000299DCD /* first.png */,
+				E21DC43416AAE9A000299DCD /* first@2x.png */,
+				E21DC43916AAE9A000299DCD /* second.png */,
+				E21DC43B16AAE9A000299DCD /* second@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E21DC41216AAE9A000299DCD /* Flights */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E21DC45A16AAE9A000299DCD /* Build configuration list for PBXNativeTarget "Flights" */;
+			buildPhases = (
+				E21DC40F16AAE9A000299DCD /* Sources */,
+				E21DC41016AAE9A000299DCD /* Frameworks */,
+				E21DC41116AAE9A000299DCD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Flights;
+			productName = Flights;
+			productReference = E21DC41316AAE9A000299DCD /* Flights.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E21DC44716AAE9A000299DCD /* FlightsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E21DC45D16AAE9A000299DCD /* Build configuration list for PBXNativeTarget "FlightsTests" */;
+			buildPhases = (
+				E21DC44316AAE9A000299DCD /* Sources */,
+				E21DC44416AAE9A000299DCD /* Frameworks */,
+				E21DC44516AAE9A000299DCD /* Resources */,
+				E21DC44616AAE9A000299DCD /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E21DC44E16AAE9A000299DCD /* PBXTargetDependency */,
+			);
+			name = FlightsTests;
+			productName = FlightsTests;
+			productReference = E21DC44816AAE9A000299DCD /* FlightsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E21DC40A16AAE9A000299DCD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MD;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Max Desyatov";
+			};
+			buildConfigurationList = E21DC40D16AAE9A000299DCD /* Build configuration list for PBXProject "Flights" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E21DC40816AAE9A000299DCD;
+			productRefGroup = E21DC41416AAE9A000299DCD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E21DC41216AAE9A000299DCD /* Flights */,
+				E21DC44716AAE9A000299DCD /* FlightsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E21DC41116AAE9A000299DCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E21DC42216AAE9A000299DCD /* InfoPlist.strings in Resources */,
+				E21DC42A16AAE9A000299DCD /* Default.png in Resources */,
+				E21DC42C16AAE9A000299DCD /* Default@2x.png in Resources */,
+				E21DC42E16AAE9A000299DCD /* Default-568h@2x.png in Resources */,
+				E21DC43316AAE9A000299DCD /* first.png in Resources */,
+				E21DC43516AAE9A000299DCD /* first@2x.png in Resources */,
+				E21DC43A16AAE9A000299DCD /* second.png in Resources */,
+				E21DC43C16AAE9A000299DCD /* second@2x.png in Resources */,
+				E21DC43F16AAE9A000299DCD /* MDHomeViewController.xib in Resources */,
+				E21DC44216AAE9A000299DCD /* MDAlertsViewController.xib in Resources */,
+				E21DC46C16AAECF200299DCD /* MDSearchViewController.xib in Resources */,
+				E21DC47116AAED0600299DCD /* MDSettingsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E21DC44516AAE9A000299DCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E21DC45416AAE9A000299DCD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E21DC44616AAE9A000299DCD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E21DC40F16AAE9A000299DCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E21DC42416AAE9A000299DCD /* main.m in Sources */,
+				E21DC42816AAE9A000299DCD /* MDAppDelegate.m in Sources */,
+				E21DC43116AAE9A000299DCD /* MDHomeViewController.m in Sources */,
+				E21DC43816AAE9A000299DCD /* MDAlertsViewController.m in Sources */,
+				E21DC46B16AAECF200299DCD /* MDSearchViewController.m in Sources */,
+				E21DC47016AAED0600299DCD /* MDSettingsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E21DC44316AAE9A000299DCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E21DC45716AAE9A000299DCD /* FlightsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E21DC44E16AAE9A000299DCD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E21DC41216AAE9A000299DCD /* Flights */;
+			targetProxy = E21DC44D16AAE9A000299DCD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E21DC42016AAE9A000299DCD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E21DC42116AAE9A000299DCD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E21DC43D16AAE9A000299DCD /* MDHomeViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E21DC43E16AAE9A000299DCD /* en */,
+			);
+			name = MDHomeViewController.xib;
+			sourceTree = "<group>";
+		};
+		E21DC44016AAE9A000299DCD /* MDAlertsViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E21DC44116AAE9A000299DCD /* en */,
+			);
+			name = MDAlertsViewController.xib;
+			sourceTree = "<group>";
+		};
+		E21DC45216AAE9A000299DCD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E21DC45316AAE9A000299DCD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E21DC45816AAE9A000299DCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E21DC45916AAE9A000299DCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E21DC45B16AAE9A000299DCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Flights/Flights-Prefix.pch";
+				INFOPLIST_FILE = "Flights/Flights-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E21DC45C16AAE9A000299DCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Flights/Flights-Prefix.pch";
+				INFOPLIST_FILE = "Flights/Flights-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E21DC45E16AAE9A000299DCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Flights.app/Flights";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Flights/Flights-Prefix.pch";
+				INFOPLIST_FILE = "FlightsTests/FlightsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E21DC45F16AAE9A000299DCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Flights.app/Flights";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Flights/Flights-Prefix.pch";
+				INFOPLIST_FILE = "FlightsTests/FlightsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E21DC40D16AAE9A000299DCD /* Build configuration list for PBXProject "Flights" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E21DC45816AAE9A000299DCD /* Debug */,
+				E21DC45916AAE9A000299DCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E21DC45A16AAE9A000299DCD /* Build configuration list for PBXNativeTarget "Flights" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E21DC45B16AAE9A000299DCD /* Debug */,
+				E21DC45C16AAE9A000299DCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E21DC45D16AAE9A000299DCD /* Build configuration list for PBXNativeTarget "FlightsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E21DC45E16AAE9A000299DCD /* Debug */,
+				E21DC45F16AAE9A000299DCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E21DC40A16AAE9A000299DCD /* Project object */;
+}
