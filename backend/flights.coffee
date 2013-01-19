@@ -43,9 +43,27 @@ route.timetable = (_, query, response) ->
     @click '#WizzTimeTableControl_ButtonSubmit'
     @echo "requesting a timetable from #{ query.src } to #{ query.dst }", 'INFO'
     @waitForSelector '#timetableSlider', ->
-      @echo "got a timetable, making a screenshot", 'INFO'
+      hey = @evaluate ((source, destination) ->
+        result = []
+        $('span.flights_daylist').filter(-> $('span.item', this).length > 0)
+          .each ->
+            item = $('span.item', this)
+            $.ajax
+              url: 'http://127.0.0.1:5984/flights/'
+              type: 'POST'
+              contentType: 'application/json'
+              data: JSON.stringify
+                timestamp: (new Date()).valueOf()
+                date: $('strong', this).attr 'data-datetime'
+                flight: item.attr 'data-flightnumber'
+                time: item.attr 'data-time'
+                price: $('span.price', this).text()
+                source: source
+                destination: destination
+        result), query.src, query.dst
+      @echo "got a timetable with result #{ JSON.stringify hey }, making a screenshot", 'INFO'
       @capture 'blah.png'
-      serveFile('blah.png', response, 'rb')
+      serveFile 'blah.png', response, 'rb'
 
   casper.run ->
     @echo "casper workflow finished", 'INFO'

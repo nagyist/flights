@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MDHomeViewController : UIViewController
+@interface MDHomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

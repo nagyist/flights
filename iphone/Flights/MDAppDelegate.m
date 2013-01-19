@@ -13,10 +13,18 @@
 #import "MDSearchViewController.h"
 #import "MDSettingsViewController.h"
 
+#import "TouchDB.h"
+
 @implementation MDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSError* error;
+    TDServer* tdServer = [[TDServer alloc] initWithDirectory:@"/tmp/touchdb_empty_app"
+                                                        error:&error];
+    NSAssert(tdServer, @"Couldn't create server: %@", error);
+    [TDURLProtocol setServer:tdServer];
+	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 	UIViewController *viewController1 = [[MDHomeViewController alloc] initWithNibName:@"MDHomeViewController" bundle:nil];
