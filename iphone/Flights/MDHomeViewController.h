@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MDHomeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@class CouchUITableSource, CouchDatabase, CouchPersistentReplication;
+
+@interface MDHomeViewController : UIViewController <UITableViewDelegate>
+{
+    CouchPersistentReplication *_pull;
+    CouchPersistentReplication *_push;
+}
+
+@property (strong, nonatomic) IBOutlet CouchUITableSource *dataSource;
+@property (strong, nonatomic) CouchDatabase *database;
+
+-(void)useDatabase:(CouchDatabase*)theDatabase;
 
 @end

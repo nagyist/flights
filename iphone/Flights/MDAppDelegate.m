@@ -13,7 +13,11 @@
 #import "MDSearchViewController.h"
 #import "MDSettingsViewController.h"
 
-#import "TouchDB.h"
+#import <CouchCocoa/CouchCocoa.h>
+#import <CouchCocoa/CouchTouchDBServer.h>
+
+// The name of the database the app will use.
+#define kDatabaseName @"flights"
 
 @implementation MDAppDelegate
 
