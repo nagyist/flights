@@ -1,6 +1,8 @@
 http = require 'http'
 urlParse = require('url').parse
 
+root = 'http://192.168.1.103:5984/flights/'
+
 httpMethod = (url, method, startCb, endCb) ->
   options = urlParse url
   options.method = method
@@ -29,8 +31,7 @@ httpBody = (url, method, endCb, body) ->
 httpPut = (url, endCb, body) -> httpBody url, 'PUT', endCb, body
 httpPost = (url, endCb, body) -> httpBody url, 'POST', endCb, body
 
-allDocsUrl = 'http://192.168.1.103:5984/flights/_all_docs?include_docs=true'
+allDocs = (cb) -> httpGet "#{ root }_all_docs?include_docs=true", (docs) ->
+  cb(row.doc for row in docs.rows)
 
-httpGet allDocsUrl, (result) ->
-  for row in result.rows
-    console.log row.doc.price
+allDocs (docs) -> console.log docs
