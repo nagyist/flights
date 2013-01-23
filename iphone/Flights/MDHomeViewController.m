@@ -44,13 +44,13 @@
     [self showSyncButton];
 	
     // Create a query sorted by descending date, i.e. newest items first:
-    NSAssert(database!=nil, @"Not hooked up to database yet");
+    NSAssert(database != nil, @"Not hooked up to database yet");
     CouchLiveQuery *query = [[[database designDocumentWithName: @"grocery"]
 							  queryViewNamed: @"byDate"] asLiveQuery];
     query.descending = YES;
     
     self.dataSource.query = query;
-    self.dataSource.labelProperty = @"text";    // Document property to display in the cell label
+    self.dataSource.labelProperty = @"price";    // Document property to display in the cell label
 	
     [self updateSyncURL];
 }
@@ -71,7 +71,7 @@
 }
 
 
-- (void)setDatabase:(CouchDatabase*)theDatabase
+- (void)setDatabase:(CouchDatabase *)theDatabase
 {
     _database = theDatabase;
     
