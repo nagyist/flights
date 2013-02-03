@@ -1,8 +1,12 @@
 http = require 'http'
 urlParse = require('url').parse
 extend = require 'node.extend'
+path = require 'path'
+fs = require 'fs'
+walk = require 'walkdir'
+_ = require 'underscore'
 
-root = 'http://192.168.1.103:5984/flights/'
+root = 'http://127.0.0.1:5984/flights/'
 jsonHeader = { 'Content-Type': 'application/json' }
 
 httpProto = (url, options, startCb, endCb) ->
@@ -36,6 +40,66 @@ allDocs = (cb) ->
   httpGet "#{ root }_all_docs?include_docs=true", (docs) ->
     cb(row.doc for row in docs.rows)
 
+validationDocUrl = "#{ root }_design/validation"
+
+readPackageJson = (moduleDir, packageName) ->
+  filePath = path.join moduleDir, packageName, 'package.json'
+  if fs.existsSync filePath
+    JSON.parse(fs.readFileSync filePath)
+
+stringifyModule = (moduleName, packageName) ->
+  for dir in process.env.NODE_PATH.split ':'
+    packageInfo = readPackageJson dir, packageName
+    libPath = path.join dir, packageName, packageInfo.directories.lib
+    if packageInfo? and fs.existsSync libPath
+        filePath = path.join libPath, "#{ moduleName }.js"
+        return fs.readFileSync filePath, 'UTF-8'
+
+stringifyPackage = (packageName) ->
+  result = {}
+
+  for dir in process.env.NODE_PATH.split ':'
+    packageInfo = readPackageJson dir
+    mainPath = path.join dir, packageName, packageInfo.main
+    if packageInfo? and fs.existsSync mainPath
+      mainDir = path.dirname mainPath
+      for file in walk.sync mainDir when path.extname(file) is '.js'
+        relativeFilePath = path.relative mainDir, file
+        modulePath =
+          path.join(path.dirname(relativeFilePath),
+                    path.basename(relativeFilePath, '.js')).split(path.sep)
+        reduceFun = (res, el) ->
+          result = {}
+          result[el] = res
+          result
+
+        fileContents = fs.readFileSync file, 'UTF-8'
+
+        result =
+          extend result,
+                _.reduce(modulePath.reverse(), reduceFun, fileContents)
+
+  result
+
+
+validateDocUpdate = (newDoc, oldDoc, userCtx, secObj) ->
+  if not newDoc._deleted?
+
+    throw { forbidden: JSON.stringify(require 'lib/json-schema') }
+
+httpGet validationDocUrl, (doc) ->
+  validationDocument =
+    _id: '_design/validation'
+    lib:
+      'json-schema': stringifyModule 'json-schema', 'commonjs-utils'
+      schema1: fs.readFileSync '1.json', 'UTF-8'
+    validate_doc_update: validateDocUpdate + ''
+
+  if doc._rev?
+    validationDocument._rev = doc._rev
+  httpPut validationDocUrl, validationDocument, (response) ->
+    console.log response
+
 #allDocs (docs) ->
 #  for doc in docs
 #    doc.schema_version = 1
@@ -46,21 +110,3 @@ allDocs = (cb) ->
 #
 #  httpPostJson "#{ root }_bulk_docs", bulk_update, (response_object) ->
 #    console.log response_object
-
-validationDocUrl = "#{ root }_design/validation"
-
-validateDocUpdate = (newDoc, oldDoc, userCtx, secObj) ->
-  if not newDoc._deleted? && not newDoc.schema_version?
-    throw {forbidden: 'Document must have a schema version.'}
-
-httpGet validationDocUrl, (doc) ->
-  validationDocument =
-    _id: '_design/validation'
-    #  lib:
-    #    jsv: stringifyModule 'JSV'
-    validate_doc_update: validateDocUpdate + ''
-
-  if doc._rev?
-    validationDocument._rev = doc._rev
-  httpPut validationDocUrl, validationDocument, (response) ->
-    console.log response
