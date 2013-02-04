@@ -81,18 +81,22 @@ stringifyPackage = (packageName) ->
 
   result
 
-
 validateDocUpdate = (newDoc, oldDoc, userCtx, secObj) ->
   if not newDoc._deleted?
+    validate = require('lib/json-schema').validate
+    schema = require('lib/schema1').schema
 
-    throw { forbidden: JSON.stringify(require 'lib/json-schema') }
+    result = validate newDoc, schema
+
+    if not result.valid
+      throw { forbidden: JSON.stringify(result.errors) }
 
 httpGet validationDocUrl, (doc) ->
   validationDocument =
     _id: '_design/validation'
     lib:
       'json-schema': stringifyModule 'json-schema', 'commonjs-utils'
-      schema1: fs.readFileSync '1.json', 'UTF-8'
+      schema1: fs.readFileSync 'schema1.js', 'UTF-8'
     validate_doc_update: validateDocUpdate + ''
 
   if doc._rev?

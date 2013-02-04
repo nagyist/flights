@@ -1,4 +1,4 @@
-{
+exports.schema = {
     "type":"object",
     "$schema": "http://json-schema.org/draft-03/schema",
     "id": "#",
