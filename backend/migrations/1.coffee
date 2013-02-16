@@ -104,13 +104,13 @@ httpGet validationDocUrl, (doc) ->
   httpPut validationDocUrl, validationDocument, (response) ->
     console.log response
 
-#allDocs (docs) ->
-#  for doc in docs
-#    doc.schema_version = 1
-#    doc.type = 'timetable_item'
-#
-#  bulk_update =
-#    docs: docs
-#
-#  httpPostJson "#{ root }_bulk_docs", bulk_update, (response_object) ->
-#    console.log response_object
+allDocs (docs) ->
+  for doc in docs
+    doc.schema_version = 1
+    doc.type = 'timetable_item'
+
+  bulk_update =
+    docs: docs
+
+  httpPost "#{ root }_bulk_docs", bulk_update, (response_object) ->
+    console.log response_object

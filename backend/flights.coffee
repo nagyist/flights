@@ -1,7 +1,12 @@
 phantom.injectJs './parseuri.js'
 
-casper = require('casper').create exitOnError: true
-fs = require('fs');
+casper = require('casper').create
+  onError: (self, m) ->        # Any "error" level message will be written
+    console.log('FATAL:' + m)  # on the console output and PhantomJS will
+    self.exit()                # terminate
+
+fs = require 'fs'
+utils = require 'utils'
 
 locale = 'en-GB'
 
@@ -48,20 +53,26 @@ route.timetable = (_, query, response) ->
         $('span.flights_daylist').filter(-> $('span.item', this).length > 0)
           .each ->
             item = $('span.item', this)
-            $.ajax
-              url: 'http://127.0.0.1:5984/flights/'
-              type: 'POST'
-              contentType: 'application/json'
-              data: JSON.stringify
-                timestamp: (new Date()).valueOf()
-                date: $('strong', this).attr 'data-datetime'
-                flight: item.attr 'data-flightnumber'
-                time: item.attr 'data-time'
-                price: $('span.price', this).text()
-                source: source
-                destination: destination
+            result.push
+              timestamp: (new Date()).valueOf()
+              date: $('strong', this).attr 'data-datetime'
+              flight: item.attr 'data-flightnumber'
+              time: item.attr 'data-time'
+              price: $('span.price', this).text()
+              source: source
+              destination: destination
+#                schema_version: 1
+#                type: 'timetable_item'
         result), query.src, query.dst
-      @echo "got a timetable with result #{ JSON.stringify hey }, making a screenshot", 'INFO'
+      if hey.length > 0
+        postBody = JSON.stringify hey[0]
+        @thenOpen 'http://127.0.0.1:5984/flights/', (
+          method: 'post'
+          data: postBody
+          encoding: 'utf8'
+          headers:
+            'Content-Type': 'application/json'), -> @echo @getPageContent()
+      @echo "got a timetable with result #{ JSON.stringify hey[0] }, making a screenshot", 'INFO'
       @capture 'blah.png'
       serveFile 'blah.png', response, 'rb'
 
