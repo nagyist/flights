@@ -5,30 +5,76 @@ fs = require 'fs'
 walk = require 'walkdir'
 path = require 'path'
 _ = require 'underscore'
+colors = require './log_colors'.colors
 
 # create reusable transport method (opens pool of SMTP connections)
 smtpTransport = nodemailer.createTransport 'SMTP',
   service: 'Gmail'
-  auth: config.mailAuth
+  auth: config.senderMailAuth
 
-fs.watch config.mailDir, (event) ->
-  if event is 'rename'
-    for filepath in walk.sync config.mailDir when fs.lstatSync(filepath).isFile()
-      console.log "sending contents of file #{ filepath }"
+fileOk = (filepath, cb) ->
+  if not filepath in filesInWork
+    fs.lstat filepath, (error, stats) ->
+      if error?
+        console.log error.error
+      else if stats.isFile() and not stats.isSymbolicLink()
+        cb()
+
+dirOk = (filepath, cb) ->
+  if not dirpath of watchedDirectories
+    fs.lstat filepath, (error, stats) ->
+      if error?
+        console.log error.error
+      else if stats.isDirectory() and not stats.isSymbolicLink()
+        cb()
+
+watchedDirectories = {}
+filesInWork = []
+
+checkTree = (dirpath) ->
+  for filepath in walk.sync config.mailDir
+    fileOk filepath, ->
+      console.log "sending contents of file #{ filepath }".info
+      filesInWork.push filepath
       sendFileContents filepath
+    dirOk filepath, ->
+      watch filepath
+
+watch = (dirpath) ->
+  watchedDirectories[dirpath] = fs.watch dirpath, (event) ->
+    if event is 'rename'
+      checkTree dirpath
+
+main = ->
+  checkTree config.mailDir
+  watch config.mailDir
+
+parentDirname = (filepath) ->
+  _.last path.dirname(filepath).split(path.sep)
+
+removeFileOrDir = (filepath) ->
+  fs.existsSync filepath, (exists) ->
+    if exists
+      fs.unlink filepath, (error) ->
+        if error?
+          console.log error.error
+        else
+          console.log "just removed file #{ filepath }".info
 
 sendFileContents = (filepath) ->
   mailOptions =
-    subject: _.last path.dirname(filepath).split(path.sep)
+    subject: parentDirname filepath
     html: fs.readFileSync filepath, 'UTF-8'
 
-  # send mail with defined transport object
   smtpTransport.sendMail extend(mailOptions, config.mailOptions),
     (error, response) ->
       if error?
-        console.log error
+        console.log error.error
       else
-        console.log "Message sent: #{ response.message }"
-        if fs.existsSync filepath
-          fs.unlink filepath
+        console.log "Message sent: #{ response.message }".info
+        removeFileOrDir filepath
 
+if(require.main is module)
+  main()
+
+exports.main = main
