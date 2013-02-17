@@ -4,6 +4,7 @@ extend = require 'node.extend'
 fs = require 'fs'
 walk = require 'walkdir'
 path = require 'path'
+_ = require 'underscore'
 
 # create reusable transport method (opens pool of SMTP connections)
 smtpTransport = nodemailer.createTransport 'SMTP',
@@ -18,7 +19,7 @@ fs.watch config.mailDir, (event) ->
 
 sendFileContents = (filepath) ->
   mailOptions =
-    subject: (path.dirname(filepath).split path.sep).slice(-1)[0]
+    subject: _.last path.dirname(filepath).split(path.sep)
     html: fs.readFileSync filepath, 'UTF-8'
 
   # send mail with defined transport object
