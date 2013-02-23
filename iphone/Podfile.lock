@@ -1,0 +1,30 @@
+
+PODS: 
+- CocoaAsyncSocket (0.0.1)
+- CocoaHTTPServer (2.2.1): 
+  - CocoaAsyncSocket (~> 0.0.1)
+  - CocoaLumberjack (~> 1.3.0)
+- CocoaLumberjack (1.3.3)
+- CouchCocoa (1.1.0): 
+  - JSONKit (~> 1.4)
+- JSONKit (1.5pre)
+- MYUtilities (0.0.1)
+- TouchDB (1.03): 
+  - CocoaHTTPServer
+  - JSONKit
+  - MYUtilities
+
+DEPENDENCIES: 
+- CouchCocoa (~> 1.1)
+- TouchDB (~> 1.03)
+
+COCOAPODS: 0.16.0
+
+SPEC CHECKSUMS: 
+  CouchCocoa: 64f2c36dcfbb8d85cee09363aaf5b26bd8fd422f
+  CocoaLumberjack: 5b2c6e153a8b251dc4b5cea52138e5c2665e2eca
+  TouchDB: 64b698aa3f20000a3ae0df4459d17ca70be365be
+  JSONKit: 3d4708953ea7ae399a49777372d8b060a43ddd27
+  MYUtilities: 0aaa59590688bb9215bd1046a4cb1e8244eee928
+  CocoaHTTPServer: 188251009cdf2fb9f422e6979621b8942733cb22
+  CocoaAsyncSocket: 70f5de3c1ba13526c23df75fc98a0ea3049aa19c

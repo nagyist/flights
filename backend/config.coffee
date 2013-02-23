@@ -1,8 +1,11 @@
 exports.config =
-  mailDir: 'mailqueue' #directory where files with e-mail contents will be stored
-  mailAuth:
-    user: 'e-mail' #sender's e-mail
-    pass: 'password' #password for this e-mail
+  mailDir: '/Users/wollner/Documents/flights/backend/mailqueue'
+  senderMailAuth:
+    user: 'unruhig@gmail.com'
+    pass: 'n3cr0d3@thm0rt'
+  recipientMailAuth:
+    user: 'explicitcall@gmail.com'
+    pass: 'm3@tb3@tm@n1f3$t0'
   mailOptions:
-    from: 'from field' #what will be written in from field
-    to: 'receiver' # list of receivers
+    from: 'flights mailer <unruhig@gmail.com>'
+    to: 'explicitcall@gmail.com' # list of receivers

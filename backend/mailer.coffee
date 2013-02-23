@@ -5,7 +5,7 @@ fs = require 'fs'
 walk = require 'walkdir'
 path = require 'path'
 _ = require 'underscore'
-colors = require './log_colors'.colors
+colors = require('./log_colors').colors
 
 # create reusable transport method (opens pool of SMTP connections)
 smtpTransport = nodemailer.createTransport 'SMTP',
@@ -74,7 +74,7 @@ sendFileContents = (filepath) ->
         console.log "Message sent: #{ response.message }".info
         removeFileOrDir filepath
 
-if(require.main is module)
+if require.main is module
   main()
 
 exports.main = main

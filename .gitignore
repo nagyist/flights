@@ -1,0 +1,7 @@
+Pods/
+.idea/
+.DS_Store
+*.xcworkspacedata
+*.xcuserstate
+blah.png
+

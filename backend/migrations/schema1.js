@@ -1,4 +1,4 @@
-exports.schema = {
+exports.schemas = [{
     "type":"object",
     "$schema": "http://json-schema.org/draft-03/schema",
     "id": "#",
@@ -27,7 +27,8 @@ exports.schema = {
         "schema_version": {
             "type":"number",
             "id": "schema_version",
-            "required":true
+            "required":true,
+            "enum": [ 1 ]
         },
         "source": {
             "type":"string",
@@ -47,7 +48,9 @@ exports.schema = {
         "type": {
             "type":"string",
             "id": "type",
-            "required":true
+            "required":true,
+            "enum": [ "timetable_item" ]
         }
     }
 }
+];

@@ -83,39 +83,10 @@ stringifyPackage = (packageName) ->
 
   result
 
-validateDocUpdate = (newDoc, oldDoc, userCtx, secObj) ->
-  if not newDoc._deleted?
-    _ = require 'lib/underscore'
-    validate = require('lib/json-schema').validate
-    schemas = require('lib/schema1').schemas
-
-    results = _.map schemas, (schema) -> validate newDoc, schema
-
-    if not (_.any results, (result) -> result.valid)
-      throw { forbidden: JSON.stringify(_.pluck results, 'errors') }
-
-
-httpGet validationDocUrl, (doc) ->
-  validationDocument =
-    _id: '_design/validation'
-    lib:
-      'json-schema': stringifyModule 'json-schema', 'commonjs-utils'
-      schema1: fs.readFileSync 'schema1.js', 'UTF-8'
-      underscore: stringifyModule 'underscore', 'underscore'
-    validate_doc_update: validateDocUpdate + ''
-
-  if doc._rev?
-    validationDocument._rev = doc._rev
-  httpPut validationDocUrl, validationDocument, (response) ->
-    console.log response
-
-allDocs (docs) ->
-  for doc in docs
-    doc.schema_version = 1
-    doc.type = 'timetable_item'
-
-  bulk_update =
-    docs: docs
-
-  httpPost "#{ root }_bulk_docs", bulk_update, (response_object) ->
-    console.log response_object
+exports.httpGet = httpGet
+exports.httpPut = httpPut
+exports.httpPost = httpPost
+exports.allDocs = allDocs
+exports.validationDocUrl = validationDocUrl
+exports.stringifyModule = stringifyModule
+exports.rootUrl = root
