@@ -4,4 +4,5 @@ Pods/
 *.xcworkspacedata
 *.xcuserstate
 blah.png
+backend/node_modules
 

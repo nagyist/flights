@@ -1,4 +1,4 @@
-phantom.injectJs './parseuri.js'
+uri = require './parseuri'
 
 casper = require('casper').create
   onError: (self, m) ->        # Any "error" level message will be written
@@ -89,9 +89,10 @@ route['favicon.ico'] = (_, __, response) ->
   serveFile 'static/favicon.ico', response
 
 server = require('webserver').create()
-service = server.listen '0.0.0.0:8080', (request, response) ->
+server.listen '0.0.0.0:8080', (request, response) ->
   url = request.url
-  [method, pathLeft...] = parseUri(url).path.substring(1).split '/'
+  casper.echo url
+  [method, pathLeft...] = uri.parse(url).path.substring(1).split '/'
   casper.echo "got a request for method #{ method }", 'INFO'
   query = getQueryDict url
   if route[method]?

@@ -32,7 +32,7 @@ watchedDirectories = {}
 filesInWork = []
 
 checkTree = (dirpath) ->
-  for filepath in walk.sync config.mailDir
+  for filepath in walk.sync dirpath
     fileOk filepath, ->
       console.log "sending contents of file #{ filepath }".info
       filesInWork.push filepath
