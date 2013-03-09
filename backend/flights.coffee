@@ -16,7 +16,7 @@ serveRedirect = (url, response) ->
   casper.echo "serving redirect to url #{ url }"
   response.statusCode = 301
   response.headers = Location: url
-  response.write('')
+  response.write ''
   response.close()
 
 serveFile = (filePath, response, mode = 'r') ->
@@ -52,7 +52,7 @@ route.timetable = (_, query, response) ->
         result = []
         $('span.flights_daylist').filter(-> $('span.item', this).length > 0)
           .each ->
-            item = $('span.item', this)
+            item = $ 'span.item', this
             result.push
               timestamp: (new Date()).valueOf()
               date: $('strong', this).attr 'data-datetime'
@@ -61,10 +61,11 @@ route.timetable = (_, query, response) ->
               price: $('span.price', this).text()
               source: source
               destination: destination
-#                schema_version: 1
-#                type: 'timetable_item'
+              schema_version: 2
+              type: 'timetable_item'
         result), query.src, query.dst
       if hey.length > 0
+        casper.echo hey.length
         postBody = JSON.stringify hey[0]
         @thenOpen 'http://127.0.0.1:5984/flights/', (
           method: 'post'
@@ -91,10 +92,9 @@ route['favicon.ico'] = (_, __, response) ->
 server = require('webserver').create()
 server.listen '0.0.0.0:8080', (request, response) ->
   url = request.url
-  casper.echo url
   [method, pathLeft...] = uri.parse(url).path.substring(1).split '/'
   casper.echo "got a request for method #{ method }", 'INFO'
-  query = getQueryDict url
+  query = uri.queryDict url
   if route[method]?
     route[method] pathLeft, query, response
   else
