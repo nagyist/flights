@@ -2,33 +2,31 @@
 # (c) Steven Levithan <stevenlevithan.com>
 # MIT License
 
-exports.parse = (str) ->
+parseUri = (str) ->
+  o = parseUri.options
+  m = o.parser[if o.strictMode then "strict" else "loose"].exec(str)
+  uri = {}
   i = 14
-  #console.log "trying to parse #{str}"
-  #o = @options
-  #m = o.parser[o.strictMode ? "strict" : "loose"].exec(str)
-  #uri = {}
-  #i = 14
 
-	while i--
+  while i--
     uri[o.key[i]] = m[i] || ""
 
-	uri[o.q.name] = {};
-	uri[o.key[12]].replace(o.q.parser, ($0, $1, $2) ->
-		if ($1) then uri[o.q.name][$1] = $2)
+  uri[o.q.name] = {};
+  uri[o.key[12]].replace(o.q.parser, ($0, $1, $2) ->
+    if ($1) then uri[o.q.name][$1] = $2)
 
-	uri
+  uri
 
-exports.parse.options =
-	strictMode: false
-	key: ["source","protocol","authority","userInfo","user","password","host",
-          "port","relative","path","directory","file","query","anchor"]
-	q:
-		name:   "queryKey"
-		parser: /(?:^|&)([^&=]*)=?([^&]*)/g
-	parser:
-		strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
-		loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
+parseUri.options =
+  strictMode: false
+  key: ["source","protocol","authority","userInfo","user","password","host",
+        "port","relative","path","directory","file","query","anchor"]
+  q:
+    name:   "queryKey"
+    parser: /(?:^|&)([^&=]*)=?([^&]*)/g
+  parser:
+    strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
+    loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
 
 exports.queryDict = (url) ->
   query = parseUri(url).query;
@@ -39,3 +37,5 @@ exports.queryDict = (url) ->
     result[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1])
 
   result
+
+exports.parse = parseUri
