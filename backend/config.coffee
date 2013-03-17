@@ -1,5 +1,6 @@
-exports.config =
+module.exports =
   mailDir: '/Users/wollner/Documents/flights/backend/mailqueue'
+  locale: 'en-GB'
   senderMailAuth:
     user: 'unruhig@gmail.com'
     pass: 'n3cr0d3@thm0rt'

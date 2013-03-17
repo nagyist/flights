@@ -1,4 +1,5 @@
 uri = require './parseuri'
+config = require './config'
 
 casper = require('casper').create
   onError: (self, m) ->        # Any "error" level message will be written
@@ -7,8 +8,6 @@ casper = require('casper').create
 
 fs = require 'fs'
 utils = require 'utils'
-
-locale = 'en-GB'
 
 route = {}
 
@@ -36,7 +35,7 @@ serveFile = (filePath, response, mode = 'r') ->
     response.close()
 
 route.timetable = (_, query, response) ->
-  casper.start "http://wizzair.com/#{ locale }/TimeTable", ->
+  casper.start "http://wizzair.com/#{ config.locale }/TimeTable", ->
     sourceInput = '#WizzTimeTableControl_AutocompleteTxtDeparture'
     @sendKeys sourceInput, query.src
     @sendKeys sourceInput, 16777221

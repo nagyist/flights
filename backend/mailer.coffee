@@ -1,5 +1,5 @@
 nodemailer = require 'nodemailer'
-config = require('./config').config
+config = require './config'
 extend = require 'node.extend'
 fs = require 'fs'
 walk = require 'walkdir'
