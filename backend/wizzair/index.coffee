@@ -5,6 +5,7 @@ fs = require 'fs'
 db = require 'benchdb'
 async = require 'async'
 _ = require 'underscore'
+random_ua = require 'random-ua'
 
 srcInputId = 'WizzTimeTableControl_AutocompleteTxtDeparture'
 srcInput = null
@@ -16,29 +17,35 @@ browser.on 'status', (info) ->
 browser.on 'command', (meth, path, data) ->
   console.log ' > \x1b[33m%s\x1b[0m: %s', meth, path, data || ''
 
+next = _(browser.next).bind(browser)
+step = {}
+buildPlaceholder = (name) ->
+  -> _.partial.apply _, [next, name].concat(_.toArray arguments)
+_.each _.functions(browser), (k) -> step[k] = buildPlaceholder k
+
 browser.chain()
-  .init()
+  .init({ "phantomjs.page.settings.userAgent": random_ua.generate() })
   .get("http://wizzair.com/#{ config.locale }/TimeTable")
   .elementById(srcInputId, (err, el) ->
     srcInput = el)
   .elementById(dstInputId, (err, dstInput) ->
+    previousSource = null
     currentSource = null
     previousDestination = null
     currentDestination = null
     i = 1
-    next = _(browser.next).bind(browser)
     fn = (cb) ->
       fnSteps = [
-        _(next).partial('clickElement', srcInput),
-        _(next).partial('keys', wd.SPECIAL_KEYS['Back space']),
-        _(next).partial('keys', wd.SPECIAL_KEYS['Down arrow']),
-        _(next).partial('keys', wd.SPECIAL_KEYS.Tab)
-        _(next).partial('clickElement', dstInput),
-        _(next).partial('keys', wd.SPECIAL_KEYS['Back space'])]
-      _(i).times -> fnSteps.push _(next).partial 'keys', wd.SPECIAL_KEYS['Down arrow']
-      fnSteps.push _(next).partial('keys', wd.SPECIAL_KEYS.Tab),
-        _(next).partial('getValue', srcInput),
-        _(next).partial('getValue', dstInput)
+        step.clickElement(srcInput),
+        step.keys(wd.SPECIAL_KEYS['Back space']),
+        step.keys(wd.SPECIAL_KEYS['Down arrow']),
+        step.keys(wd.SPECIAL_KEYS.Tab),
+        step.clickElement(dstInput),
+        step.keys(wd.SPECIAL_KEYS['Back space'])]
+      _(i).times -> fnSteps.push step.keys wd.SPECIAL_KEYS['Down arrow']
+      fnSteps.push step.keys(wd.SPECIAL_KEYS.Tab),
+        step.getValue(srcInput),
+        step.getValue(dstInput)
       async.series fnSteps, (err, results) ->
         [src, dst] = _(results).last(2)
         currentSource = src

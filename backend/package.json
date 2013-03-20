@@ -22,7 +22,8 @@
         "async": "0.2.x",
         "jade": "0.28.x",
         "supervisor": "0.5.x",
-        "wd": "0.0.x"
+        "wd": "0.0.x",
+        "random-ua": "0.0.x"
     },
     "analyze": false,
     "license": "proprietary",
