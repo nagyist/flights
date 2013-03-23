@@ -7,9 +7,9 @@ async = require 'async'
 _ = require 'underscore'
 random_ua = require 'random-ua'
 
-srcInputId = 'WizzTimeTableControl_AutocompleteTxtDeparture'
-srcInput = null
-dstInputId = 'WizzTimeTableControl_AutocompleteTxtArrival'
+srcInput = '#WizzTimeTableControl_AutocompleteTxtDeparture'
+dstInput = '#WizzTimeTableControl_AutocompleteTxtArrival'
+submitButton = '#WizzTimeTableControl_ButtonSubmit'
 
 browser.on 'status', (info) ->
   console.log '\x1b[36m%s\x1b[0m', info
@@ -22,43 +22,61 @@ step = {}
 buildPlaceholder = (name) ->
   -> _.partial.apply _, [next, name].concat(_.toArray arguments)
 _.each _.functions(browser), (k) -> step[k] = buildPlaceholder k
+step.getAttribute$ = (selector, attributeName) ->
+  _(async.waterfall).partial [step.elementByCssSelector(selector),
+    ((el, cb) -> next 'getAttribute', el, attributeName, cb)]
+step.clickElement$ = (selector) ->
+  _(async.waterfall).partial [step.elementByCssSelector(selector),
+    _(next).partial 'clickElement']
 
 browser.chain()
   .init({ "phantomjs.page.settings.userAgent": random_ua.generate() })
-  .get("http://wizzair.com/#{ config.locale }/TimeTable")
-  .elementById(srcInputId, (err, el) ->
-    srcInput = el)
-  .elementById(dstInputId, (err, dstInput) ->
-    previousSource = null
+  .get("http://wizzair.com/#{ config.locale }/TimeTable", (err) ->
+    previousSource = false
     currentSource = null
-    previousDestination = null
+    previousDestination = false
     currentDestination = null
-    i = 1
-    fn = (cb) ->
-      fnSteps = [
-        step.clickElement(srcInput),
-        step.keys(wd.SPECIAL_KEYS['Back space']),
-        step.keys(wd.SPECIAL_KEYS['Down arrow']),
-        step.keys(wd.SPECIAL_KEYS.Tab),
-        step.clickElement(dstInput),
-        step.keys(wd.SPECIAL_KEYS['Back space'])]
-      _(i).times -> fnSteps.push step.keys wd.SPECIAL_KEYS['Down arrow']
-      fnSteps.push step.keys(wd.SPECIAL_KEYS.Tab),
-        step.getValue(srcInput),
-        step.getValue(dstInput)
-      async.series fnSteps, (err, results) ->
-        [src, dst] = _(results).last(2)
-        currentSource = src
-        previousDestination = currentDestination
-        currentDestination = dst
-        ++i
-        cb err
-    test = ->
-      if previousDestination isnt currentDestination
-        console.log "got source #{currentSource}, destination #{currentDestination}"
-      else
-        true
-    async.doUntil fn, test, ->)
-  .takeScreenshot((err, screenshot) ->
-      fs.writeFile 'blah.png', new Buffer(screenshot, 'base64'), encoding: 'binary')
-  .quit()
+    number = null
+    i = 0
+    sourceFn = (sourceCb) ->
+      previousSource = currentSource
+      ++i
+      j = 1
+      destinationFn = (cb) ->
+        fnSteps = [step.clickElement$(srcInput),
+          step.keys(wd.SPECIAL_KEYS['Back space'])]
+        _(i).times -> fnSteps.push step.keys wd.SPECIAL_KEYS['Down arrow']
+        fnSteps.push step.keys(wd.SPECIAL_KEYS.Tab),
+          step.clickElement$(dstInput),
+          step.keys(wd.SPECIAL_KEYS['Back space'])
+        _(j).times -> fnSteps.push step.keys wd.SPECIAL_KEYS['Down arrow']
+        fnSteps.push step.keys(wd.SPECIAL_KEYS.Tab),
+          step.clickElement$(submitButton),
+          step.waitForElementById('timetableSlider', 1),
+          step.getAttribute$('span.item', 'data-flightnumber'),
+          step.getAttribute$(srcInput, 'value'),
+          step.getAttribute$(dstInput, 'value')
+        async.series fnSteps, (err, results) ->
+          if err instanceof Error and err.message isnt "Element didn't appear"
+            console.log "got error #{err}, restarting step"
+            next 'takeScreenshot', (err, screenshot) ->
+              fs.writeFile 'blah.png', new Buffer(screenshot, 'base64'), encoding: 'binary', ->
+                cb err
+            return
+          else
+            if err instanceof Error and err.message is "Element didn't appear"
+              err = null
+            [number, currentSource, dst] = _(results).last(3)
+            previousDestination = currentDestination
+            currentDestination = dst
+            ++j
+            cb err
+      destinationTest = ->
+        if (previousSource isnt currentSource) and
+            (previousDestination isnt currentDestination)
+          console.log "got source #{currentSource}, destination #{currentDestination} with number #{number}"
+        else
+          true
+      async.doUntil destinationFn, destinationTest, (err) -> sourceCb err
+    sourceTest = -> previousSource is currentSource
+    async.doUntil sourceFn, sourceTest, -> next 'quit')
