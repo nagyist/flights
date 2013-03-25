@@ -18,7 +18,7 @@
     "dependencies" : {
         "benchdb":  "0.0.8",
         "underscore": "1.4.x",
-        "coffee-script": "1.5.x",
+        "coffee-script": "1.6.x",
         "async": "0.2.x",
         "jade": "0.28.x",
         "supervisor": "0.5.x",

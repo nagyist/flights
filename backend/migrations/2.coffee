@@ -36,7 +36,6 @@ common.allDocs (docs) ->
       delete doc.source
       delete doc.destination
 
-  docs =
   bulk_update =
     docs: _.reject(docs, (doc) -> doc._id is designId)
 
