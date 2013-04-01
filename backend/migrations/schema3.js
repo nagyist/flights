@@ -125,4 +125,34 @@ exports.schemas = [
             "required":true
         }
     }
+},
+{
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "#",
+    "required":false,
+    "properties":{
+        "code": {
+            "type":"string",
+            "id": "code",
+            "required":true
+        },
+        "names": {
+            "type":"object",
+            "id": "names",
+            "required":true
+        },
+        "type": {
+            "type":"string",
+            "id": "type",
+            "required":true,
+            "enum": ["airport"]
+        },
+        "schema_version": {
+            "type":"number",
+            "id": "schema_version",
+            "required":false,
+            "enum": [ 3 ]
+        }
+    }
 }];

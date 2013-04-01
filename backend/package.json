@@ -16,11 +16,10 @@
         "url": "https://github.com/silverwiz/iMoneyWiz.git"
     },
     "dependencies" : {
-        "benchdb":  "0.0.8",
+        "benchdb":  "0.0.x",
         "underscore": "1.4.x",
         "coffee-script": "1.6.x",
         "async": "0.2.x",
-        "jade": "0.28.x",
         "supervisor": "0.5.x",
         "wd": "0.0.x",
         "random-ua": "0.0.x"
@@ -28,6 +27,6 @@
     "analyze": false,
     "license": "proprietary",
     "engines": {
-        "node": ">=0.8"
+        "node": ">=0.10"
     }
 }

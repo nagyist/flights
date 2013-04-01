@@ -2,7 +2,8 @@ wd = require 'wd'
 browser = wd.remote '127.0.0.1', 8080
 config = require '../config'
 fs = require 'fs'
-db = require 'benchdb'
+benchdb = require 'benchdb'
+db = new benchdb 'http://127.0.0.1:5984/flights'
 async = require 'async'
 _ = require 'underscore'
 random_ua = require 'random-ua'
@@ -29,6 +30,10 @@ step.clickElement$ = (selector) ->
   _(async.waterfall).partial [step.elementByCssSelector(selector),
     _(next).partial 'clickElement']
 
+dbCb = (err) ->
+  if err
+    console.log "error happened in BenchDb: #{ err }"
+
 browser.chain()
   .init({ "phantomjs.page.settings.userAgent": random_ua.generate() })
   .get("http://wizzair.com/#{ config.locale }/TimeTable", (err) ->
@@ -39,6 +44,17 @@ browser.chain()
     number = null
     i = 0
     sourceFn = (sourceCb) ->
+      if currentSource? and currentSource
+        [wholeString, name, code] = /(.+) \((.+)\)$/.exec currentSource
+        if code.length > 0
+          doc =
+            type: 'airport'
+            schema_version: 3
+            code: code
+            names: {}
+          doc.names[config.locale] = name
+          # FIXME: check for existing airport
+          db.create doc, dbCb
       previousSource = currentSource
       ++i
       j = 1
@@ -60,8 +76,7 @@ browser.chain()
           if err instanceof Error and err.message isnt "Element didn't appear"
             console.log "got error #{err}, restarting step"
             next 'takeScreenshot', (err, screenshot) ->
-              fs.writeFile 'blah.png', new Buffer(screenshot, 'base64'), encoding: 'binary', ->
-                cb err
+              fs.writeFile 'blah.png', new Buffer(screenshot, 'base64'), encoding: 'binary', -> cb err
             return
           else
             if err instanceof Error and err.message is "Element didn't appear"

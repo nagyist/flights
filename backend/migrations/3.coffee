@@ -15,7 +15,7 @@ validateDocUpdate = (newDoc, oldDoc, userCtx, secObj) ->
     results = _.map schemas, (schema) -> validate newDoc, schema
 
     if not (_.any results, (result) -> result.valid)
-      throw { forbidden: JSON.stringify(_.pluck results, 'errors') }
+      throw { forbidden: JSON.stringify _.pluck(results, 'errors') }
 
 common.httpGet common.validationDocUrl, (doc) ->
   validationDocument =
